@@ -74,7 +74,7 @@ public class DepartmentListController implements Initializable, DataChangeListen
 
 	private void initializeNodes() {
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("name"));
+		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
 
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewdepartment.prefHeightProperty().bind(stage.heightProperty());
