@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.Main;
-import db.DbException;
+import db.DbIntegrityException;
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
@@ -46,7 +46,7 @@ public class SellerListController implements Initializable, DataChangeListener {
 
 	@FXML
 	private TableColumn<Seller, String> tableColumnName;
-	
+
 	@FXML
 	private TableColumn<Seller, String> tableColumnEmail;
 	
@@ -55,10 +55,10 @@ public class SellerListController implements Initializable, DataChangeListener {
 	
 	@FXML
 	private TableColumn<Seller, Double> tableColumnBaseSalary;
-
+	
 	@FXML
 	private TableColumn<Seller, Seller> tableColumnEDIT;
-	
+
 	@FXML
 	private TableColumn<Seller, Seller> tableColumnREMOVE;
 
@@ -74,12 +74,12 @@ public class SellerListController implements Initializable, DataChangeListener {
 		createDialogForm(obj, "/gui/SellerForm.fxml", parentStage);
 	}
 
-	public void setService(SellerService service) {
+	public void setSellerService(SellerService service) {
 		this.service = service;
 	}
 
 	@Override
-	public void initialize(URL url, ResourceBundle rd) {
+	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
 	}
 
@@ -89,7 +89,7 @@ public class SellerListController implements Initializable, DataChangeListener {
 		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		tableColumnBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
 		Utils.formatTableColumnDate(tableColumnBirthDate, "dd/MM/yyyy");
-		tableColumnBaseSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
+		tableColumnBaseSalary.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
 		Utils.formatTableColumnDouble(tableColumnBaseSalary, 2);
 
 		Stage stage = (Stage) Main.getMainScene().getWindow();
@@ -133,7 +133,7 @@ public class SellerListController implements Initializable, DataChangeListener {
 	}
 
 	@Override
-	public void OnDataChanged() {
+	public void onDataChanged() {
 		updateTableView();
 	}
 
@@ -155,7 +155,7 @@ public class SellerListController implements Initializable, DataChangeListener {
 			}
 		});
 	}
-	
+
 	private void initRemoveButtons() {
 		tableColumnREMOVE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		tableColumnREMOVE.setCellFactory(param -> new TableCell<Seller, Seller>() {
@@ -173,7 +173,7 @@ public class SellerListController implements Initializable, DataChangeListener {
 			}
 		});
 	}
-	
+
 	private void removeEntity(Seller obj) {
 		Optional<ButtonType> result = Alerts.showConfirmation("Confirmation", "Are you sure to delete?");
 
@@ -185,7 +185,7 @@ public class SellerListController implements Initializable, DataChangeListener {
 				service.remove(obj);
 				updateTableView();
 			}
-			catch (DbException e) {
+			catch (DbIntegrityException e) {
 				Alerts.showAlert("Error removing object", null, e.getMessage(), AlertType.ERROR);
 			}
 		}

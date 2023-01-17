@@ -39,7 +39,7 @@ public class SellerDaoJDBC implements SellerDao{
 			st.setString(1, seller.getName());
 			st.setString(2, seller.getEmail());
 			st.setDate(3, new java.sql.Date(seller.getBirthDate().getTime()));
-			st.setDouble(4, seller.getSalary());
+			st.setDouble(4, seller.getBaseSalary());
 			st.setInt(5, seller.getDepartment().getId());
 			
 			int rowsAffected = st.executeUpdate();
@@ -78,7 +78,7 @@ public class SellerDaoJDBC implements SellerDao{
 			st.setString(1, seller.getName());
 			st.setString(2, seller.getEmail());
 			st.setDate(3, new java.sql.Date(seller.getBirthDate().getTime()));
-			st.setDouble(4, seller.getSalary());
+			st.setDouble(4, seller.getBaseSalary());
 			st.setInt(5, seller.getDepartment().getId());
 			st.setInt(6, seller.getId());
 			
@@ -152,7 +152,7 @@ public class SellerDaoJDBC implements SellerDao{
 		seller.setName(rs.getString("Name"));
 		seller.setEmail(rs.getString("Email"));
 		seller.setBirthDate(new java.util.Date(rs.getTimestamp("BirthDate").getTime()));
-		seller.setSalary(rs.getDouble("BaseSalary"));
+		seller.setBaseSalary(rs.getDouble("BaseSalary"));
 		seller.setDepartment(dep);
 		
 		return seller;

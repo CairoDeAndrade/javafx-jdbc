@@ -31,7 +31,7 @@
 				<HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
 					<children>
 						<Button fx:id="BtSave" mnemonicParsing="false" onAction="#onBtSaveAction" text="Save" />
-						<Button fx:id="BtCancel" mnemonicParsing="false" onAction="#onBtSaveAction" text="Cancel" />
+						<Button fx:id="BtCancel" mnemonicParsing="false" onAction="#onBtCancelAction" text="Cancel" />
 					</children>
 				</HBox>
 			</children>

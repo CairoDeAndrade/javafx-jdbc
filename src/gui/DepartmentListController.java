@@ -117,7 +117,7 @@ public class DepartmentListController implements Initializable, DataChangeListen
 	}
 
 	@Override
-	public void OnDataChanged() {
+	public void onDataChanged() {
 		updateTableView();
 	}
 

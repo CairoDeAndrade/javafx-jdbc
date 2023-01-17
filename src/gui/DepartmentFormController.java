@@ -19,8 +19,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import model.Exceptions.ValidationException;
 import model.entities.Department;
+import model.exceptions.ValidationException;
 import model.services.DepartmentService;
 
 public class DepartmentFormController implements Initializable{
@@ -85,7 +85,7 @@ public class DepartmentFormController implements Initializable{
 	
 	private void notifyDataChangeListeners() {
 		for (DataChangeListener listener : dataChangeListeners) {
-			listener.OnDataChanged();
+			listener.onDataChanged();
 		}
 	}
 

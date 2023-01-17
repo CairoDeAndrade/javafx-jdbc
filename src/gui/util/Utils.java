@@ -27,7 +27,7 @@ public class Utils {
 			return null;
 		}
 	}
-	
+
 	public static Double tryParseToDouble(String str) {
 		try {
 			return Double.parseDouble(str);
@@ -75,7 +75,6 @@ public class Utils {
 
 	public static void formatDatePicker(DatePicker datePicker, String format) {
 		datePicker.setConverter(new StringConverter<LocalDate>() {
-
 			DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(format);
 			{
 				datePicker.setPromptText(format.toLowerCase());
